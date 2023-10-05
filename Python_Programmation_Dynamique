@@ -1,0 +1,69 @@
+# Saisie de deux séquences ADN :
+#       - Saisie séquences
+#       - Vérification ADN
+#       - Création en matrice
+#               - liste
+#               - liste de liste
+#               - croisement en matrice
+# Et qui calcule la distance entre les deux séquences par programmation dynamique
+#       - Remplir la matrice
+# Contraintes globales
+# Afficher le meilleur appariement (tronçon de la séquence ADN pour que cela soit lisible).
+
+
+# 1. Saisie des séquences et vérification ADN :
+
+# Vérifie que la séquence soit un ADN, avec des bases A, T, C, ou G :
+def verif_adn(seq1, seq2):
+    bases_azotees = set("ACTG")
+
+# Si les caractères de la séq1 ou de la séq2 ne sont pas des bases, la fonction `verifadn` prend la valeur False
+    for base1 in seq1:
+        if base1 not in bases_azotees:
+            return False
+    for base2 in seq2:
+        if base2 not in bases_azotees:
+            return False
+
+# S'il n'y a pas d'autre caratère que A, T, C, ou G, alors la fonction prend la valeur True
+    return True
+# Pas besoin de `else` ligne au-dessus, car `return` sort de la boucle/fonction
+
+
+# Permet à l'utilisateur de saisir les séquences :
+def saisie_adn():
+
+    # Séquence horizontale
+    seq1 = input("\nEntrez la 1ere séquence ADN : ").upper()
+
+    # Séquence verticale
+    seq2 = input("\nEntrez la 2e séquence ADN : ").upper()
+
+    # Verification
+    if verif_adn(seq1, seq2):
+        print("super, ces séquences sont des ADN !")
+        return seq1, seq2
+# Selon la valeur de `verifadn` est False, on demandera à l'utilisateur de resaisir les séquences (fonction récursive)
+    else:
+        print("\nMerci de rentrer une séquence ADN de bases azotées : A, T, C, G")
+        saisie_adn()
+
+
+#saisie_adn()
+
+
+def creation_matrice():
+    seq1, seq2 = saisie_adn()
+    n = len(seq1)
+    m = len(seq2)
+    matrix = []
+    for i in range(n):
+        ligne = []
+        for j in range(m):
+            ligne.append(0)
+        matrix.append(ligne)
+    
+    for ligne in matrix:
+				print(ligne)
+
+creation_matrice()
